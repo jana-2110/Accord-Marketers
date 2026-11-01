@@ -3,28 +3,33 @@ export default function BrandLogo({ variant = 'dark', className = '' }) {
 
   return (
     <div className={`flex items-center gap-3 select-none ${className}`}>
-      {/* Custom Geometric Monogram Icon */}
-      <div className="relative w-9 h-9 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
-        <svg viewBox="0 0 44 44" className="w-full h-full" fill="none">
-          {/* Background Rounded Squircle */}
-          <rect width="44" height="44" rx="12" fill={isLight ? '#FFFFFF' : '#0F172A'} />
-          
-          {/* Stylized Modern "A" Monogram in Golden Mustard & Accent */}
-          <path
-            d="M22 9L11 33H17L22 21L27 33H33L22 9Z"
-            fill="#B38B00"
+      {/* Official Logomark: Geometric capsules forming 'A', 'M' and motion arrow */}
+      <div className="relative w-9 h-9 lg:w-10 lg:h-10 flex items-center justify-center shrink-0">
+        <svg viewBox="0 0 48 48" className="w-full h-full" fill="none">
+          {/* Left Angled Pill */}
+          <rect
+            x="8"
+            y="20"
+            width="9"
+            height="22"
+            rx="4.5"
+            transform="rotate(-26 8 20)"
+            fill={isLight ? '#FFFFFF' : '#0F172A'}
           />
-          {/* Dynamic Crossbar Notch */}
-          <path
-            d="M17.5 24.5H26.5L25 28.5H19L17.5 24.5Z"
-            fill={isLight ? '#0F172A' : '#F1F2E6'}
+          {/* Right Angled Pill (Taller, shifted up and right) */}
+          <rect
+            x="22"
+            y="7"
+            width="9.5"
+            height="32"
+            rx="4.75"
+            transform="rotate(-26 22 7)"
+            fill={isLight ? '#B38B00' : '#B38B00'}
           />
-          {/* Subtle Top Crown Dot */}
-          <circle cx="22" cy="14" r="2" fill="#FFFFFF" />
         </svg>
       </div>
 
-      {/* Typographic Wordmark */}
+      {/* Official Brand Logotype: ACCORD MARKETERS */}
       <div className="flex flex-col">
         <span
           className={`text-lg lg:text-xl font-extrabold tracking-tight leading-none ${
@@ -34,11 +39,11 @@ export default function BrandLogo({ variant = 'dark', className = '' }) {
           ACCORD
         </span>
         <span
-          className={`text-[9px] lg:text-[10px] font-bold tracking-[0.22em] uppercase leading-tight mt-0.5 ${
-            isLight ? 'text-mustard' : 'text-mustard'
+          className={`text-[9px] lg:text-[10px] font-bold tracking-[0.24em] uppercase leading-tight mt-0.5 ${
+            isLight ? 'text-white/70' : 'text-body/70'
           }`}
         >
-          MARKETING
+          MARKETERS
         </span>
       </div>
     </div>

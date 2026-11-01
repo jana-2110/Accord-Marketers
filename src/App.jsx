@@ -2,75 +2,75 @@ import { useState } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import TrustedBrands from './components/TrustedBrands'
-import Services from './components/Services'
-import Statistics from './components/Statistics'
-import About from './components/About'
-import Portfolio from './components/Portfolio'
-import Process from './components/Process'
-import Testimonials from './components/Testimonials'
-import FAQ from './components/FAQ'
-import Blog from './components/Blog'
-import CallToAction from './components/CallToAction'
+import TrustBar from './components/TrustBar'
+import ValueProposition from './components/ValueProposition'
+import ServicesGrid from './components/ServicesGrid'
+import IndustrySolutions from './components/IndustrySolutions'
+import ResultsMetrics from './components/ResultsMetrics'
+import CaseStudies from './components/CaseStudies'
+import Methodology from './components/Methodology'
+import AboutAgency from './components/AboutAgency'
+import FAQHub from './components/FAQHub'
+import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
-import ContactModal from './components/ContactModal'
+import DiagnosticModal from './components/DiagnosticModal'
 import WhatsAppButton from './components/WhatsAppButton'
 
 function App() {
-  const [isContactOpen, setIsContactOpen] = useState(false)
+  const [isDiagnosticOpen, setIsDiagnosticOpen] = useState(false)
 
-  const handleOpenContact = () => setIsContactOpen(true)
-  const handleCloseContact = () => setIsContactOpen(false)
+  const handleOpenDiagnostic = () => setIsDiagnosticOpen(true)
+  const handleCloseDiagnostic = () => setIsDiagnosticOpen(false)
 
   return (
     <Router>
       <div className="min-h-screen bg-ivory text-body font-sans selection:bg-mustard selection:text-white">
-        {/* Navigation */}
-        <Navbar onOpenContact={handleOpenContact} />
+        {/* Navigation Bar */}
+        <Navbar onOpenDiagnostic={handleOpenDiagnostic} />
 
         <main>
-          {/* Section 1: Hero */}
-          <Hero onOpenContact={handleOpenContact} />
+          {/* Section 1: Hero Section */}
+          <Hero onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 2: Trusted Brands */}
-          <TrustedBrands />
+          {/* Section 2: Trust Bar & Social Proof */}
+          <TrustBar />
 
-          {/* Section 3: Services */}
-          <Services onOpenContact={handleOpenContact} />
+          {/* Section 3: Value Proposition (3 Strategic Pillars) */}
+          <ValueProposition onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 4: Statistics */}
-          <Statistics />
+          {/* Section 4: Full-Spectrum Services Overview */}
+          <ServicesGrid onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 5: About Us & Why Choose Us */}
-          <About onOpenContact={handleOpenContact} />
+          {/* Section 5: Solutions by Business Category & Industry */}
+          <IndustrySolutions onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 6: Portfolio / Our Work */}
-          <Portfolio onOpenContact={handleOpenContact} />
+          {/* Section 6: Results-Driven Messaging & Metrics */}
+          <ResultsMetrics onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 7: How We Work (5-step process) */}
-          <Process />
+          {/* Section 7: Strategic Case Studies */}
+          <CaseStudies onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 8: Testimonials */}
-          <Testimonials />
+          {/* Section 8: Methodology & Process (4 Phases) */}
+          <Methodology onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 9: FAQ */}
-          <FAQ onOpenContact={handleOpenContact} />
+          {/* Section 9: About / Why Accord Marketers */}
+          <AboutAgency onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 10: Blog / Growth Playbooks */}
-          <Blog onOpenContact={handleOpenContact} />
+          {/* Section 10: Global FAQ Hub (AEO-Optimized) */}
+          <FAQHub onOpenDiagnostic={handleOpenDiagnostic} />
 
-          {/* Section 11: Call To Action */}
-          <CallToAction onOpenContact={handleOpenContact} />
+          {/* Section 11: Final Call to Action */}
+          <FinalCTA onOpenDiagnostic={handleOpenDiagnostic} />
         </main>
 
-        {/* Footer */}
-        <Footer onOpenContact={handleOpenContact} />
+        {/* Global Footer */}
+        <Footer onOpenDiagnostic={handleOpenDiagnostic} />
 
-        {/* Floating WhatsApp Action Button */}
+        {/* Floating WhatsApp Action Widget */}
         <WhatsAppButton />
 
-        {/* Interactive Consultation / Inquiry Modal */}
-        <ContactModal isOpen={isContactOpen} onClose={handleCloseContact} />
+        {/* Interactive Strategic Diagnostic Modal */}
+        <DiagnosticModal isOpen={isDiagnosticOpen} onClose={handleCloseDiagnostic} />
       </div>
     </Router>
   )

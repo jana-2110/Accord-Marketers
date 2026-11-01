@@ -1,13 +1,12 @@
 import { motion, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import {
   MessageCircle,
   Phone,
   Mail,
   MapPin,
   ArrowUpRight,
-  Heart,
-  Send,
+  ShieldCheck,
   CheckCircle,
 } from 'lucide-react'
 import BrandLogo from './BrandLogo'
@@ -36,23 +35,6 @@ function LinkedinIcon(props) {
   )
 }
 
-const quickLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'Services', href: '#services' },
-  { name: 'About Us', href: '#about' },
-  { name: 'Our Work', href: '#portfolio' },
-  { name: 'Blog', href: '#blog' },
-]
-
-const serviceLinks = [
-  'Digital Strategy',
-  'Paid Advertising (Google & Meta)',
-  'SEO & Content Marketing',
-  'Social Media Marketing',
-  'Website Development',
-  'Branding & Creative Design',
-]
-
 const socialLinks = [
   { icon: FacebookIcon, href: 'https://facebook.com/accordmarketers', label: 'Facebook' },
   { icon: InstagramIcon, href: 'https://instagram.com/accordmarketers', label: 'Instagram' },
@@ -60,41 +42,32 @@ const socialLinks = [
   { icon: MessageCircle, href: 'https://wa.me/', label: 'WhatsApp' },
 ]
 
-export default function Footer({ onOpenContact }) {
+export default function Footer({ onOpenDiagnostic }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-50px' })
-  const [newsletterEmail, setNewsletterEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
 
   const handleNavClick = (e, href) => {
     if (href.startsWith('#')) {
       e.preventDefault()
       const target = document.querySelector(href)
       if (target) {
-        const offsetTop = target.offsetTop - 80
+        const offsetTop = target.offsetTop - 85
         window.scrollTo({ top: offsetTop, behavior: 'smooth' })
       }
     }
   }
 
-  const handleSubscribe = (e) => {
-    e.preventDefault()
-    if (newsletterEmail) {
-      setSubscribed(true)
-    }
-  }
-
   return (
     <footer id="contact" className="bg-navy text-white relative overflow-hidden" ref={ref}>
-      {/* Decorative top border */}
+      {/* Top Gold Gradient Border */}
       <div className="h-1 bg-gradient-to-r from-navy via-mustard to-navy" />
 
-      {/* Subtle background glow */}
+      {/* Subtle ambient lighting */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-lavender/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative">
         <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
-          {/* Column 1: Brand & Bio */}
+          {/* Column 1: Brand Bio */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -105,16 +78,16 @@ export default function Footer({ onOpenContact }) {
               href="#home"
               onClick={(e) => handleNavClick(e, '#home')}
               className="inline-block mb-5 cursor-pointer"
-              aria-label="Accord Marketing Home"
+              aria-label="Accord Marketers Home"
             >
               <BrandLogo variant="light" />
             </a>
-            <p className="text-white/65 text-sm leading-relaxed mb-6 max-w-sm">
-              Accord Marketing is a results-driven digital marketing agency. We engineer data-backed growth systems, creative branding, and scalable customer acquisition engines for ambitious companies.
+            <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-6 max-w-sm">
+              Accord Marketers is a strategic consulting-led agency combining business advisory, digital marketing, and custom software development. We help startups, SMEs, and enterprises grow through integrated strategy, technology, and execution.
             </p>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mb-6">
               {socialLinks.map((social) => {
                 const Icon = social.icon
                 return (
@@ -124,149 +97,163 @@ export default function Footer({ onOpenContact }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-mustard hover:border-mustard transition-all duration-300 group"
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-mustard hover:border-mustard transition-all duration-300"
                   >
-                    <Icon className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+                    <Icon className="w-4 h-4 text-white/70 hover:text-white transition-colors" />
                   </a>
                 )
               })}
             </div>
+
+            <div className="flex items-center gap-2 text-xs text-mustard font-bold">
+              <ShieldCheck className="w-4 h-4" />
+              <span>Strategy-to-Execution Accountability</span>
+            </div>
           </motion.div>
 
-          {/* Column 2: Quick Links */}
+          {/* Column 2: Strategic Consulting */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="lg:col-span-2"
+            className="lg:col-span-3"
           >
-            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-5 text-white/90">
-              Navigation
+            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-mustard">
+              Strategic Consulting
             </h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-sm text-white/55 hover:text-mustard transition-colors duration-300 flex items-center gap-1 group"
-                  >
-                    {link.name}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-              ))}
+            <ul className="space-y-2.5 text-xs text-white/60">
+              <li>
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                  Growth Diagnostics &amp; Assessment
+                </a>
+              </li>
+              <li>
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                  Competitive Intelligence &amp; Positioning
+                </a>
+              </li>
+              <li>
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                  Digital Transformation Roadmapping
+                </a>
+              </li>
+              <li>
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                  Go-to-Market Strategy &amp; Launch
+                </a>
+              </li>
+              <li>
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                  Capability Maturity Scoring
+                </a>
+              </li>
+              <li>
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                  Revenue Operations (RevOps) Design
+                </a>
+              </li>
             </ul>
           </motion.div>
 
-          {/* Column 3: Services */}
+          {/* Column 3: Marketing & Technology */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="lg:col-span-3"
+            className="lg:col-span-2"
           >
-            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-5 text-white/90">
-              Services
+            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-mustard">
+              Delivery Engines
             </h4>
-            <ul className="space-y-3">
-              {serviceLinks.map((service) => (
-                <li key={service}>
-                  <a
-                    href="#services"
-                    onClick={(e) => handleNavClick(e, '#services')}
-                    className="text-sm text-white/55 hover:text-mustard transition-colors duration-300 block"
-                  >
-                    {service}
-                  </a>
-                </li>
-              ))}
+            <ul className="space-y-2.5 text-xs text-white/60">
+              <li>
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                  SEO &amp; AEO (AI Search)
+                </a>
+              </li>
+              <li>
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                  SEM &amp; Paid Media
+                </a>
+              </li>
+              <li>
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                  Custom Web &amp; Mobile Apps
+                </a>
+              </li>
+              <li>
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                  MarTech Stack Architecture
+                </a>
+              </li>
+              <li>
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                  CRM / ERP Data Sync
+                </a>
+              </li>
+              <li>
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                  Server-Side Attribution
+                </a>
+              </li>
             </ul>
           </motion.div>
 
-          {/* Column 4: Contact & Newsletter */}
+          {/* Column 4: Contact & Diagnostic Intake */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.5 }}
             className="sm:col-span-2 lg:col-span-3"
           >
-            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-5 text-white/90">
-              Get in Touch
+            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-mustard">
+              Direct Advisory Desk
             </h4>
-            <ul className="space-y-3.5 mb-6">
+            <ul className="space-y-3 text-xs text-white/60 mb-6">
               <li>
-                <a
-                  href="tel:+919876543210"
-                  className="flex items-center gap-3 text-sm text-white/60 hover:text-mustard transition-colors group"
-                >
-                  <Phone className="w-4 h-4 text-mustard shrink-0" />
+                <a href="tel:+919876543210" className="flex items-center gap-2.5 hover:text-mustard transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-mustard shrink-0" />
                   <span>+91 98765 43210</span>
                 </a>
               </li>
               <li>
-                <a
-                  href="mailto:info@accordmarketers.com"
-                  className="flex items-center gap-3 text-sm text-white/60 hover:text-mustard transition-colors group"
-                >
-                  <Mail className="w-4 h-4 text-mustard shrink-0" />
+                <a href="mailto:info@accordmarketers.com" className="flex items-center gap-2.5 hover:text-mustard transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-mustard shrink-0" />
                   <span>info@accordmarketers.com</span>
                 </a>
               </li>
               <li>
-                <div className="flex items-center gap-3 text-sm text-white/60">
-                  <MapPin className="w-4 h-4 text-mustard shrink-0" />
+                <div className="flex items-center gap-2.5">
+                  <MapPin className="w-3.5 h-3.5 text-mustard shrink-0" />
                   <span>India</span>
                 </div>
               </li>
             </ul>
 
-            {/* Newsletter input */}
-            <div className="bg-white/5 p-3.5 rounded-2xl border border-white/10">
-              <p className="text-xs font-bold text-white mb-2">Weekly Growth Memo</p>
-              {subscribed ? (
-                <p className="text-xs text-green-400 flex items-center gap-1.5 py-1">
-                  <CheckCircle className="w-3.5 h-3.5" /> Subscribed successfully!
-                </p>
-              ) : (
-                <form onSubmit={handleSubscribe} className="flex gap-2">
-                  <input
-                    type="email"
-                    required
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Enter email"
-                    className="w-full bg-navy/80 border border-white/15 px-3 py-1.5 rounded-lg text-xs text-white focus:outline-none focus:border-mustard"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-mustard hover:bg-mustard/90 text-white px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-colors"
-                  >
-                    Join
-                  </button>
-                </form>
-              )}
-            </div>
+            <button
+              onClick={onOpenDiagnostic}
+              className="w-full bg-mustard hover:bg-mustard/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-md cursor-pointer"
+            >
+              Book Strategic Diagnostic
+            </button>
           </motion.div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-14 pt-8 border-t border-white/10">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-white/45 flex items-center gap-1.5">
-              © {new Date().getFullYear()} Accord Marketing. All rights reserved. Powering Digital Engines Worldwide.
-            </p>
-            <div className="flex items-center gap-6">
-              <a href="#" className="text-xs text-white/45 hover:text-white transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-xs text-white/45 hover:text-white transition-colors">
-                Terms of Service
-              </a>
-              <a href="#" className="text-xs text-white/45 hover:text-white transition-colors">
-                Cookie Settings
-              </a>
-            </div>
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+          <p>
+            © {new Date().getFullYear()} Accord Marketers. All rights reserved. Strategic Consulting, Marketing &amp; Technology.
+          </p>
+          <div className="flex items-center gap-6">
+            <a href="#faq" onClick={(e) => handleNavClick(e, '#faq')} className="hover:text-white transition-colors">
+              AEO Knowledge Index
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              Terms of Engagement
+            </a>
           </div>
         </div>
       </div>
