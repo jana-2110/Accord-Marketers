@@ -48,16 +48,16 @@ Built in accordance with the official **Accord Marketers Visual Identity Guideli
 - Manually typeset **ACCORD MARKETERS** wordmark.
 - Dual variants: **Dark** (for ivory/light backgrounds) and **Light** (for navy/dark backgrounds).
 
-### Official Color Palette
+### Official Color Palette (Visual Identity Guidelines v1.1 - Page 13)
 
 | Token | Hex Code | Application |
 | :--- | :--- | :--- |
-| **Primary Navy** | `#0F172A` | Primary typography, headers, dark bands, footer, CTA buttons |
-| **Accent Golden Mustard** | `#B38B00` | Highlighted keywords, active states, key metrics, status indicators |
-| **Secondary Lavender** | `#B7BBD9` | Ambient lighting, secondary pill badges, decorative borders |
-| **Warm Ivory** | `#F1F2E6` | Main background canvas, section panels, contrast backdrops |
-| **Card White** | `#FFFFFF` | Elevated card surfaces, interactive modals, high-contrast areas |
-| **Slate Gray** | `#6B7996` | Secondary labels, technical metadata, subtle border states |
+| **Charleston Green** | `#282828` | Primary brand color, headings, dark backgrounds, footer, primary buttons |
+| **Slate Gray** | `#6B7996` | Secondary accent color, active indicators, borders, highlights, badges |
+| **Anti-Flash White** | `#F1F2F2` | Primary background canvas, subtle contrast surfaces, input backdrops |
+| **Pure White** | `#FFFFFF` | Elevated card surfaces, interactive modals, high-contrast text |
+
+> **Guideline Rule (Page 10):** No unauthorised colours, drop shadows, distortions, rotations, or gradients. Monochrome mark: `#282828` on light surfaces, `#FFFFFF` on dark surfaces. Primary Font: **Azo Sans** (Page 15).
 
 ---
 

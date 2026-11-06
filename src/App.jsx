@@ -24,7 +24,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-ivory text-body font-sans selection:bg-mustard selection:text-white">
+      <div className="min-h-screen bg-[#F1F2E6] text-[#334155] font-sans selection:bg-[#B38B00] selection:text-white">
         {/* Navigation Bar */}
         <Navbar onOpenDiagnostic={handleOpenDiagnostic} />
 

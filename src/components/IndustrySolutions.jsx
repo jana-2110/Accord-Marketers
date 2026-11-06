@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { Building, Rocket, Shield, Activity, Landmark, ShoppingBag, Factory, Laptop, Briefcase, ArrowRight, Check } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { Building, Rocket, Shield, Activity, Landmark, ShoppingBag, Factory, Laptop, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
+import Interactive3DCard from './3d/Interactive3DCard'
 
 const businessStages = [
   {
@@ -11,32 +12,32 @@ const businessStages = [
     bullets: [
       'Market validation frameworks, competitive landscape mapping, and investor-grade growth strategy',
       'MVP-aligned digital product strategy with cost-efficient customer acquisition frameworks',
-      'Fundraising narrative development, pitch deck advisory, and runway-preserving growth tactics',
+      'Fundraising narrative development, pitch advisory, and runway-preserving growth tactics',
     ],
     outcome: 'Faster time-to-traction, capital efficiency, and product-market fit validation without burning through runway.',
   },
   {
     id: 'smes',
     title: 'Small & Medium Enterprises (SMEs)',
-    badge: '$5M - $50M Revenue',
+    badge: 'Scaling Operations',
     icon: Building,
     bullets: [
       'Scalable marketing operations design, process automation strategy, and capability gap analysis',
       'Competitive repositioning strategy to escape commoditization and build defensible market share',
-      'Technology investment prioritization, digital maturity roadmaps, and custom tool development',
+      'Technology investment prioritization and digital maturity roadmaps',
     ],
     outcome: 'Elimination of manual operational bottlenecks, 40-60% overhead reduction, and compounding organic pipeline.',
   },
   {
     id: 'enterprise',
     title: 'Enterprise & Large Organizations',
-    badge: '$50M+ & Global',
+    badge: 'Enterprise & Global',
     icon: Shield,
     bullets: [
-      'Digital transformation consulting and enterprise legacy modernization strategy',
-      'Multi-channel campaign orchestration and governance-compliant marketing technology stacks',
+      'Digital transformation consulting and legacy modernization strategy',
+      'Multi-channel campaign orchestration and governance-compliant marketing technology',
       'Organizational change management, cross-functional alignment, and RevOps transformation',
-      'M&A marketing integration, brand consolidation strategy, and data ecosystem unification',
+      'M&A marketing integration and brand consolidation strategy',
     ],
     outcome: 'De-siloed marketing and technology operations with board-level ROI transparency and enterprise compliance.',
   },
@@ -52,10 +53,10 @@ const industries = [
   },
   {
     id: 'fintech',
-    title: 'Financial Services & Fintech',
+    title: 'Financial Services',
     icon: Landmark,
-    summary: 'Trust architecture strategy, fintech product development advisory, compliance-first marketing automation, and competitive differentiation in heavily regulated markets.',
-    highlights: ['SOC 2 / PCI-DSS Security', 'Trust-First Content Architecture', 'High-LTV Acquisition Funnels'],
+    summary: 'Trust architecture strategy, fintech product development advisory, compliance-first marketing automation, and competitive differentiation in regulated markets.',
+    highlights: ['SOC 2 / Regulatory Compliance', 'Trust-First Content Architecture', 'High-LTV Acquisition Funnels'],
   },
   {
     id: 'retail',
@@ -78,189 +79,149 @@ const industries = [
     summary: 'Product-led growth (PLG) strategy, onboarding optimization consulting, scalable API-first development, and SaaS metrics & monetization advisory.',
     highlights: ['Onboarding & Activation CRO', 'API & Integration Ecosystems', 'LTV:CAC Payback Optimization'],
   },
-  {
-    id: 'professional',
-    title: 'Professional Services & Consulting',
-    icon: Briefcase,
-    summary: 'Thought leadership strategy, expertise-based positioning, lead generation through intellectual property, and service productization consulting.',
-    highlights: ['Executive Byline Syndication', 'High-Ticket Lead Generation', 'Productized Consulting Systems'],
-  },
 ]
 
 export default function IndustrySolutions({ onOpenDiagnostic }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
-  const [viewMode, setViewMode] = useState('stages') // 'stages' | 'industries'
 
   return (
-    <section id="solutions" className="py-20 lg:py-28 bg-white relative" ref={ref}>
+    <section id="solutions" className="py-20 lg:py-28 bg-[#F1F2E6] relative" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <motion.span
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-block text-xs font-bold tracking-[0.2em] text-mustard uppercase mb-3"
+            className="inline-flex items-center gap-2 bg-white border border-[#B7BBD9]/50 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-[#B38B00] uppercase mb-3 shadow-xs"
           >
-            Tailored Growth Models
-          </motion.span>
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Tailored By Scale &amp; Sector</span>
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-navy leading-tight mb-4"
+            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-[#0F172A] leading-tight mb-5"
           >
-            Strategic Growth Solutions for Every{' '}
-            <span className="text-mustard">Stage &amp; Sector</span>
+            Solutions Designed for Your{' '}
+            <span className="text-[#B38B00]">Stage of Growth</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-body/80 leading-relaxed"
+            className="text-base sm:text-lg text-[#334155] leading-relaxed"
           >
-            No two businesses share identical growth dynamics. We customize our consulting, campaign architectures, and software engineering to your exact maturity stage and regulatory environment.
+            From venture-backed startups navigating product-market fit to global enterprises modernizing legacy operations, our strategic frameworks adapt to your specific organizational context.
           </motion.p>
         </div>
 
-        {/* View Switcher Tabs */}
-        <div className="flex items-center justify-center mb-12">
-          <div className="bg-ivory p-1.5 rounded-full border border-border flex items-center gap-1 shadow-inner">
-            <button
-              onClick={() => setViewMode('stages')}
-              className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                viewMode === 'stages'
-                  ? 'bg-navy text-white shadow-md'
-                  : 'text-navy/70 hover:text-navy'
-              }`}
-            >
-              By Business Stage (Startups, SMEs, Enterprise)
-            </button>
-            <button
-              onClick={() => setViewMode('industries')}
-              className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                viewMode === 'industries'
-                  ? 'bg-navy text-white shadow-md'
-                  : 'text-navy/70 hover:text-navy'
-              }`}
-            >
-              By Industry Sector (6 Practices)
-            </button>
-          </div>
-        </div>
-
-        {/* Content View 1: By Business Stage */}
-        <AnimatePresence mode="wait">
-          {viewMode === 'stages' ? (
-            <motion.div
-              key="stages-grid"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid lg:grid-cols-3 gap-8"
-            >
-              {businessStages.map((stage) => {
-                const Icon = stage.icon
-                return (
-                  <div
-                    key={stage.id}
-                    className="bg-ivory/50 rounded-3xl p-8 border border-border/80 hover:border-mustard/40 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="w-12 h-12 rounded-2xl bg-navy/10 group-hover:bg-mustard/15 flex items-center justify-center text-navy group-hover:text-mustard transition-colors">
-                          <Icon className="w-6 h-6" />
-                        </div>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-mustard bg-mustard/10 px-3 py-1 rounded-full">
-                          {stage.badge}
-                        </span>
-                      </div>
-
-                      <h3 className="text-xl font-extrabold text-navy mb-4 group-hover:text-mustard transition-colors">
-                        {stage.title}
-                      </h3>
-
-                      <div className="space-y-3 mb-6">
-                        {stage.bullets.map((b) => (
-                          <div key={b} className="flex items-start gap-2.5 text-xs text-body/80 leading-relaxed">
-                            <span className="w-1.5 h-1.5 rounded-full bg-mustard mt-1.5 shrink-0" />
-                            <span>{b}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-5 border-t border-border/60">
-                      <p className="text-[11px] text-body/70 italic mb-4">
-                        <strong className="text-navy font-bold not-italic">Strategic Outcome: </strong>
-                        {stage.outcome}
-                      </p>
-                      <button
-                        onClick={onOpenDiagnostic}
-                        className="w-full inline-flex items-center justify-center gap-2 bg-navy hover:bg-mustard text-white py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-                      >
-                        <span>Stage Strategic Intake</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                )
-              })}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="industries-grid"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {industries.map((ind) => {
-                const Icon = ind.icon
-                return (
-                  <div
-                    key={ind.id}
-                    className="bg-ivory/50 rounded-3xl p-7 border border-border/80 hover:border-mustard/40 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-                  >
-                    <div>
-                      <div className="w-12 h-12 rounded-2xl bg-mustard/15 flex items-center justify-center text-mustard mb-4 group-hover:scale-105 transition-transform">
+        {/* 3 Business Stages Cards with 3D Tilt */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-20">
+          {businessStages.map((stage, i) => {
+            const Icon = stage.icon
+            return (
+              <motion.div
+                key={stage.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.15 + i * 0.1, duration: 0.5 }}
+                className="h-full"
+              >
+                <Interactive3DCard
+                  glowColor="rgba(179, 139, 0, 0.15)"
+                  className="h-full bg-white rounded-3xl p-8 border border-[#B7BBD9]/40 hover:border-[#B38B00] shadow-xl shadow-[#0F172A]/5 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#0F172A] text-white">
+                        {stage.badge}
+                      </span>
+                      <div className="w-12 h-12 rounded-2xl bg-[#0F172A] text-[#B38B00] group-hover:bg-[#B38B00] group-hover:text-white transition-colors flex items-center justify-center shadow-sm">
                         <Icon className="w-6 h-6" />
                       </div>
-                      <h3 className="text-lg font-extrabold text-navy mb-2.5 group-hover:text-mustard transition-colors">
-                        {ind.title}
-                      </h3>
-                      <p className="text-xs text-body/75 leading-relaxed mb-5">
-                        {ind.summary}
-                      </p>
                     </div>
 
-                    <div className="pt-4 border-t border-border/60">
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {ind.highlights.map((h) => (
-                          <span
-                            key={h}
-                            className="bg-white text-[10px] font-bold text-navy/70 px-2.5 py-1 rounded-md border border-border/70"
-                          >
-                            {h}
-                          </span>
-                        ))}
-                      </div>
-                      <button
-                        onClick={onOpenDiagnostic}
-                        className="text-xs font-bold text-navy hover:text-mustard inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-                      >
-                        <span>Consult on {ind.title}</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
+                    <h3 className="text-xl font-extrabold text-[#0F172A] leading-snug mb-4 group-hover:text-[#B38B00] transition-colors">
+                      {stage.title}
+                    </h3>
+
+                    <ul className="space-y-3 mb-6">
+                      {stage.bullets.map((b, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-xs text-[#334155] leading-relaxed">
+                          <CheckCircle2 className="w-4 h-4 text-[#B38B00] shrink-0 mt-0.5" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                )
-              })}
-            </motion.div>
-          )}
-        </AnimatePresence>
+
+                  <div className="pt-5 border-t border-[#B7BBD9]/30">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#0F172A]/70 block mb-1">
+                      Strategic Transformation:
+                    </span>
+                    <p className="text-xs text-[#334155] font-semibold leading-relaxed mb-4">
+                      {stage.outcome}
+                    </p>
+                    <button
+                      onClick={onOpenDiagnostic}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F172A] group-hover:text-[#B38B00] transition-colors cursor-pointer"
+                    >
+                      <span>Explore Stage Solutions</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </Interactive3DCard>
+              </motion.div>
+            )
+          })}
+        </div>
+
+        {/* Industry Verticals Section */}
+        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#B7BBD9]/40 shadow-xl shadow-[#0F172A]/5">
+          <div className="max-w-2xl mb-10">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#B38B00] block mb-2">
+              Industry Verticals
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">
+              Deep Domain Expertise Across Regulated &amp; Complex Sectors
+            </h3>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {industries.map((ind) => {
+              const Icon = ind.icon
+              return (
+                <div
+                  key={ind.id}
+                  className="bg-[#F1F2E6]/60 rounded-2xl p-6 border border-[#B7BBD9]/30 hover:bg-white hover:border-[#B38B00] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-[#0F172A] text-[#B38B00] group-hover:bg-[#B38B00] group-hover:text-white transition-colors flex items-center justify-center mb-4">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-extrabold text-[#0F172A] mb-2 group-hover:text-[#B38B00] transition-colors">
+                      {ind.title}
+                    </h4>
+                    <p className="text-xs text-[#334155] leading-relaxed mb-4">
+                      {ind.summary}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5 pt-3 border-t border-[#B7BBD9]/20">
+                    {ind.highlights.map((h) => (
+                      <div key={h} className="text-[11px] font-bold text-[#0F172A] flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#B38B00]" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -1,19 +1,29 @@
 @import "tailwindcss";
 
-/* ===== ACCORD MARKETING DESIGN SYSTEM ===== */
+/* ===== ACCORD MARKETERS DESIGN SYSTEM ===== */
+/* User Selected Switch Palette: */
+/* - Midnight Navy: #0F172A */
+/* - Soft Lavender: #B7BBD9 */
+/* - Golden Mustard: #B38B00 */
+/* - Warm Ivory: #F1F2E6 */
+/* - Pure White: #FFFFFF */
 
 @theme {
-  /* Brand Colors */
+  /* Brand Palette */
   --color-navy: #0F172A;
+  --color-dark: #0F172A;
+  --color-charleston: #0F172A;
   --color-lavender: #B7BBD9;
   --color-mustard: #B38B00;
+  --color-gold: #B38B00;
   --color-ivory: #F1F2E6;
+  --color-anti-flash: #F1F2E6;
   --color-body: #334155;
-  --color-border: #E5E7EB;
+  --color-border: #E2E8F0;
   
-  /* Font Family */
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  /* Typography */
+  --font-heading: 'Azo Sans', 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-body: 'Azo Sans', 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
 /* ===== BASE STYLES ===== */
@@ -60,18 +70,93 @@
 
   ::selection {
     background-color: var(--color-mustard);
-    color: white;
+    color: #ffffff;
   }
 }
 
-/* ===== REDUCED MOTION ===== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+/* ===== 3D PERSPECTIVE UTILITIES ===== */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.translate-z-10 {
+  transform: translateZ(10px);
+}
+
+.translate-z-20 {
+  transform: translateZ(20px);
+}
+
+.translate-z-30 {
+  transform: translateZ(30px);
+}
+
+.translate-z-50 {
+  transform: translateZ(50px);
+}
+
+/* Glassmorphism 3D Surface */
+.glass-panel-3d {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(183, 187, 217, 0.4);
+  box-shadow: 
+    0 20px 40px -15px rgba(15, 23, 42, 0.07),
+    0 0 25px rgba(183, 187, 217, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.dark-glass-3d {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(183, 187, 217, 0.18);
+  box-shadow: 
+    0 30px 60px -20px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(179, 139, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Floating Animation */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
   }
+  50% {
+    transform: translateY(-12px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 
 /* ===== CUSTOM SCROLLBAR ===== */

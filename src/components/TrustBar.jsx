@@ -15,13 +15,13 @@ export default function TrustBar() {
   const isInView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
-    <section className="py-12 lg:py-16 bg-white border-y border-border/70" ref={ref}>
+    <section className="py-12 lg:py-16 bg-white border-y border-[#B7BBD9]/30" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center text-xs font-bold tracking-[0.22em] text-body/60 uppercase max-w-3xl mx-auto mb-8 leading-relaxed"
+          className="text-center text-xs font-bold tracking-[0.22em] text-[#0F172A]/70 uppercase max-w-3xl mx-auto mb-8 leading-relaxed"
         >
           Trusted by category-leading brands across technology, healthcare, retail, finance, and manufacturing for strategic advisory, marketing execution, and digital transformation.
         </motion.p>
@@ -33,12 +33,12 @@ export default function TrustBar() {
               initial={{ opacity: 0, y: 15 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="group p-3.5 rounded-2xl bg-ivory/50 border border-border/60 hover:bg-white hover:border-mustard/40 hover:shadow-md transition-all duration-300 text-center"
+              className="group p-4 rounded-2xl bg-[#F1F2E6]/60 border border-[#B7BBD9]/35 hover:bg-white hover:border-[#B38B00] hover:shadow-lg hover:shadow-[#0F172A]/5 transition-all duration-300 text-center cursor-default"
             >
-              <span className="text-xs font-bold text-navy group-hover:text-mustard transition-colors block">
+              <span className="text-xs font-bold text-[#0F172A] group-hover:text-[#B38B00] transition-colors block">
                 {sector.name}
               </span>
-              <span className="text-[10px] text-body/55 group-hover:text-navy/70 font-semibold mt-1 block">
+              <span className="text-[10px] text-[#334155] group-hover:text-[#0F172A] font-semibold mt-1 block">
                 {sector.metric}
               </span>
             </motion.div>

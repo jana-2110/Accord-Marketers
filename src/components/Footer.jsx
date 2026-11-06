@@ -5,9 +5,9 @@ import {
   Phone,
   Mail,
   MapPin,
-  ArrowUpRight,
   ShieldCheck,
-  CheckCircle,
+  ArrowRight,
+  Compass,
 } from 'lucide-react'
 import BrandLogo from './BrandLogo'
 
@@ -58,12 +58,12 @@ export default function Footer({ onOpenDiagnostic }) {
   }
 
   return (
-    <footer id="contact" className="bg-navy text-white relative overflow-hidden" ref={ref}>
-      {/* Top Gold Gradient Border */}
-      <div className="h-1 bg-gradient-to-r from-navy via-mustard to-navy" />
+    <footer id="contact" className="bg-[#0F172A] text-white relative overflow-hidden" ref={ref}>
+      {/* Top Border */}
+      <div className="h-1 bg-gradient-to-r from-[#0F172A] via-[#B38B00] to-[#0F172A]" />
 
       {/* Subtle ambient lighting */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-lavender/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#B38B00]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative">
         <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
@@ -82,7 +82,7 @@ export default function Footer({ onOpenDiagnostic }) {
             >
               <BrandLogo variant="light" />
             </a>
-            <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-6 max-w-sm">
+            <p className="text-[#B7BBD9] text-xs sm:text-sm leading-relaxed mb-6 max-w-sm">
               Accord Marketers is a strategic consulting-led agency combining business advisory, digital marketing, and custom software development. We help startups, SMEs, and enterprises grow through integrated strategy, technology, and execution.
             </p>
 
@@ -97,15 +97,15 @@ export default function Footer({ onOpenDiagnostic }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-mustard hover:border-mustard transition-all duration-300"
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#B38B00] hover:border-[#B38B00] transition-all duration-300"
                   >
-                    <Icon className="w-4 h-4 text-white/70 hover:text-white transition-colors" />
+                    <Icon className="w-4 h-4 text-[#B7BBD9] hover:text-white transition-colors" />
                   </a>
                 )
               })}
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-mustard font-bold">
+            <div className="flex items-center gap-2 text-xs text-[#B38B00] font-bold">
               <ShieldCheck className="w-4 h-4" />
               <span>Strategy-to-Execution Accountability</span>
             </div>
@@ -118,37 +118,37 @@ export default function Footer({ onOpenDiagnostic }) {
             transition={{ delay: 0.1, duration: 0.5 }}
             className="lg:col-span-3"
           >
-            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-mustard">
+            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-[#B38B00]">
               Strategic Consulting
             </h4>
-            <ul className="space-y-2.5 text-xs text-white/60">
+            <ul className="space-y-2.5 text-xs text-[#B7BBD9]">
               <li>
-                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-white transition-colors">
                   Growth Diagnostics &amp; Assessment
                 </a>
               </li>
               <li>
-                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-white transition-colors">
                   Competitive Intelligence &amp; Positioning
                 </a>
               </li>
               <li>
-                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-white transition-colors">
                   Digital Transformation Roadmapping
                 </a>
               </li>
               <li>
-                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-white transition-colors">
                   Go-to-Market Strategy &amp; Launch
                 </a>
               </li>
               <li>
-                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-white transition-colors">
                   Capability Maturity Scoring
                 </a>
               </li>
               <li>
-                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-mustard transition-colors">
+                <a href="#consulting" onClick={(e) => handleNavClick(e, '#consulting')} className="hover:text-white transition-colors">
                   Revenue Operations (RevOps) Design
                 </a>
               </li>
@@ -162,37 +162,37 @@ export default function Footer({ onOpenDiagnostic }) {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="lg:col-span-2"
           >
-            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-mustard">
+            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-[#B38B00]">
               Delivery Engines
             </h4>
-            <ul className="space-y-2.5 text-xs text-white/60">
+            <ul className="space-y-2.5 text-xs text-[#B7BBD9]">
               <li>
-                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-white transition-colors">
                   SEO &amp; AEO (AI Search)
                 </a>
               </li>
               <li>
-                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-white transition-colors">
                   SEM &amp; Paid Media
                 </a>
               </li>
               <li>
-                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-white transition-colors">
                   Custom Web &amp; Mobile Apps
                 </a>
               </li>
               <li>
-                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-white transition-colors">
                   MarTech Stack Architecture
                 </a>
               </li>
               <li>
-                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-white transition-colors">
                   CRM / ERP Data Sync
                 </a>
               </li>
               <li>
-                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-mustard transition-colors">
+                <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-white transition-colors">
                   Server-Side Attribution
                 </a>
               </li>
@@ -206,41 +206,41 @@ export default function Footer({ onOpenDiagnostic }) {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="sm:col-span-2 lg:col-span-3"
           >
-            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-mustard">
+            <h4 className="text-xs font-bold tracking-[0.18em] uppercase mb-4 text-[#B38B00]">
               Direct Advisory Desk
             </h4>
-            <ul className="space-y-3 text-xs text-white/60 mb-6">
+            <ul className="space-y-3 text-xs text-[#B7BBD9] mb-6">
               <li>
-                <a href="tel:+919876543210" className="flex items-center gap-2.5 hover:text-mustard transition-colors">
-                  <Phone className="w-3.5 h-3.5 text-mustard shrink-0" />
+                <a href="tel:+919876543210" className="flex items-center gap-2.5 hover:text-white transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-[#B38B00] shrink-0" />
                   <span>+91 98765 43210</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:info@accordmarketers.com" className="flex items-center gap-2.5 hover:text-mustard transition-colors">
-                  <Mail className="w-3.5 h-3.5 text-mustard shrink-0" />
+                <a href="mailto:info@accordmarketers.com" className="flex items-center gap-2.5 hover:text-white transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-[#B38B00] shrink-0" />
                   <span>info@accordmarketers.com</span>
                 </a>
               </li>
               <li>
                 <div className="flex items-center gap-2.5">
-                  <MapPin className="w-3.5 h-3.5 text-mustard shrink-0" />
-                  <span>India</span>
+                  <MapPin className="w-3.5 h-3.5 text-[#B38B00] shrink-0" />
+                  <span>Tirunelveli, Tamil Nadu, India</span>
                 </div>
               </li>
             </ul>
 
             <button
               onClick={onOpenDiagnostic}
-              className="w-full bg-mustard hover:bg-mustard/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-md cursor-pointer"
+              className="w-full bg-[#B38B00] hover:bg-white hover:text-[#0F172A] text-white py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-lg shadow-[#B38B00]/20 cursor-pointer"
             >
-              Book Strategic Diagnostic
+              Contact Accord Marketers Strategically
             </button>
           </motion.div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#B7BBD9]/70">
           <p>
             © {new Date().getFullYear()} Accord Marketers. All rights reserved. Strategic Consulting, Marketing &amp; Technology.
           </p>

@@ -75,27 +75,28 @@ export default function FAQHub({ onOpenDiagnostic }) {
   const toggle = (i) => setOpenIndex(openIndex === i ? -1 : i)
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-ivory/60 relative" ref={ref}>
+    <section id="faq" className="py-20 lg:py-28 bg-[#F1F2E6] relative" ref={ref}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <motion.span
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-mustard uppercase mb-3"
+            className="inline-flex items-center gap-2 bg-white border border-[#B7BBD9]/50 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-[#B38B00] uppercase mb-3 shadow-xs"
           >
-            <Sparkles className="w-3.5 h-3.5" /> AEO-Optimized Knowledge Hub
-          </motion.span>
+            <Sparkles className="w-3.5 h-3.5 text-[#B38B00]" />
+            <span>Comprehensive Strategic Hub</span>
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold text-navy leading-tight"
+            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold text-[#0F172A] leading-tight"
           >
             Frequently Asked Questions About{' '}
-            <span className="text-mustard">Strategic Consulting, Marketing &amp; Technology</span>
+            <span className="text-[#B38B00]">Strategic Consulting, Marketing &amp; Technology</span>
           </motion.h2>
-          <p className="text-body/75 text-sm sm:text-base mt-2">
+          <p className="text-[#334155] text-sm sm:text-base mt-2">
             Clear, authoritative answers on our integrated advisory and delivery model.
           </p>
         </div>
@@ -103,13 +104,13 @@ export default function FAQHub({ onOpenDiagnostic }) {
         {/* Search & Category Filter */}
         <div className="mb-10 space-y-4">
           <div className="relative">
-            <Search className="w-4 h-4 text-body/40 absolute left-4 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#0F172A]/40 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search strategic questions (e.g. MarTech, diagnostic, costs, timeline)..."
-              className="w-full pl-11 pr-4 py-3 bg-white rounded-2xl border border-border text-sm text-navy focus:outline-none focus:border-mustard shadow-sm"
+              className="w-full pl-11 pr-4 py-3 bg-white rounded-2xl border border-[#B7BBD9]/50 text-sm text-[#0F172A] focus:outline-none focus:border-[#B38B00] shadow-xs"
             />
           </div>
 
@@ -120,8 +121,8 @@ export default function FAQHub({ onOpenDiagnostic }) {
                 onClick={() => setFilterCategory(c)}
                 className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   filterCategory === c
-                    ? 'bg-navy text-white shadow-sm'
-                    : 'bg-white text-navy/70 border border-border/70 hover:border-mustard'
+                    ? 'bg-[#0F172A] text-white shadow-md'
+                    : 'bg-white text-[#0F172A] border border-[#B7BBD9]/40 hover:border-[#B38B00]'
                 }`}
               >
                 {c}
@@ -141,7 +142,7 @@ export default function FAQHub({ onOpenDiagnostic }) {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.05 + i * 0.04, duration: 0.4 }}
                 className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen ? 'border-mustard/50 shadow-lg shadow-navy/5' : 'border-border/80 hover:border-border'
+                  isOpen ? 'border-[#B38B00] shadow-lg shadow-[#0F172A]/5' : 'border-[#B7BBD9]/40 hover:border-[#B38B00]'
                 }`}
               >
                 <button
@@ -150,16 +151,16 @@ export default function FAQHub({ onOpenDiagnostic }) {
                   aria-expanded={isOpen}
                 >
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-mustard bg-mustard/10 px-2.5 py-0.5 rounded-md inline-block mb-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#B38B00] bg-[#B38B00]/10 px-2.5 py-0.5 rounded-md inline-block mb-1.5 border border-[#B38B00]/20">
                       {faq.category}
                     </span>
-                    <h3 className="text-base sm:text-lg font-extrabold text-navy leading-snug">
+                    <h3 className="text-base sm:text-lg font-extrabold text-[#0F172A] leading-snug">
                       {faq.q}
                     </h3>
                   </div>
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors mt-1 ${
-                      isOpen ? 'bg-mustard text-white' : 'bg-ivory text-navy'
+                      isOpen ? 'bg-[#0F172A] text-white' : 'bg-[#F1F2E6] text-[#0F172A]'
                     }`}
                   >
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
@@ -174,7 +175,7 @@ export default function FAQHub({ onOpenDiagnostic }) {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
-                      <div className="px-6 pb-6 text-xs sm:text-sm text-body/80 leading-relaxed border-t border-border/40 pt-4">
+                      <div className="px-6 pb-6 text-xs sm:text-sm text-[#334155] leading-relaxed border-t border-[#B7BBD9]/30 pt-4">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -186,14 +187,14 @@ export default function FAQHub({ onOpenDiagnostic }) {
         </div>
 
         {/* Strategic Consultation Callout */}
-        <div className="mt-12 bg-white rounded-2xl p-6 sm:p-7 border border-border/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 bg-white rounded-2xl p-6 sm:p-7 border border-[#B7BBD9]/40 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
-            <h4 className="text-sm font-bold text-navy">Have a specific question not covered here?</h4>
-            <p className="text-xs text-body/65 mt-0.5">Schedule a confidential strategic conversation with a partner.</p>
+            <h4 className="text-sm font-bold text-[#0F172A]">Have a specific question not covered here?</h4>
+            <p className="text-xs text-[#334155] mt-0.5">Schedule a confidential strategic conversation with our advisory team.</p>
           </div>
           <button
             onClick={onOpenDiagnostic}
-            className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-navy hover:bg-mustard text-white transition-colors cursor-pointer shrink-0"
+            className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-[#0F172A] hover:bg-[#B38B00] text-white transition-colors cursor-pointer shrink-0"
           >
             Ask a Strategic Advisor
           </button>

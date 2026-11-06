@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { Compass, Megaphone, Share2, Code2, ArrowRight, CheckCircle2, Sparkles, ChevronRight } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { Compass, Megaphone, Share2, Code2, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
+import Interactive3DCard from './3d/Interactive3DCard'
 
 const serviceCategories = [
   {
@@ -8,7 +9,6 @@ const serviceCategories = [
     title: 'Strategic Consulting & Advisory',
     shortDesc: 'Diagnose growth constraints, architect positioning, and guide executive decision-making.',
     icon: Compass,
-    accent: 'navy',
     items: [
       { name: 'Business Growth Diagnostics & Opportunity Assessment', desc: 'Growth constraint analysis, TAM/SAM/SOM mapping, and capability maturity scoring.' },
       { name: 'Competitive Intelligence & Market Positioning Strategy', desc: 'Deep-dive competitor benchmarking, brand architecture, and value proposition design.' },
@@ -25,12 +25,11 @@ const serviceCategories = [
     title: 'Digital Marketing',
     shortDesc: 'Engineered for revenue, full-funnel attribution, and compounding organic authority.',
     icon: Megaphone,
-    accent: 'mustard',
     items: [
       { name: 'Search Engine Optimization (SEO) & AEO Strategy', desc: 'Semantic topic clustering, technical audits, and answer-engine optimization (AI search).' },
       { name: 'Search Engine Marketing (SEM, PPC & Programmatic)', desc: 'High-intent search capture across Google & Microsoft Ads with custom landing pages.' },
       { name: 'Social Media Strategy, Organic & Paid', desc: 'Platform-native audience building, B2B LinkedIn ABM, and performance retargeting.' },
-      { name: 'Content Marketing, Thought Leadership & Authority', desc: 'Long-form intellectual property, executive bylines, whitepapers, and buyer education.' },
+      { name: 'Content Marketing, Thought Leadership & Brand Authority', desc: 'Long-form intellectual property, executive bylines, whitepapers, and buyer education.' },
       { name: 'Email Marketing, Marketing Automation & CRM Strategy', desc: 'Behavioral nurture workflows, lifecycle mapping, and bi-directional CRM sync.' },
       { name: 'Performance Analytics, Attribution & Business Intelligence', desc: 'GA4, server-side tracking, multi-touch attribution, and executive ROI dashboards.' },
     ],
@@ -40,7 +39,6 @@ const serviceCategories = [
     title: 'Traditional & Integrated Marketing',
     shortDesc: 'Physical and offline campaigns strategically bridged into your digital attribution engine.',
     icon: Share2,
-    accent: 'lavender',
     items: [
       { name: 'Brand Strategy, Positioning & Architecture', desc: 'Identity design, brand guidelines, and market differentiation frameworks.' },
       { name: 'Integrated Offline-Online Campaign Strategy', desc: 'Attribution bridging via QR, promo codes, and sequential cross-channel messaging.' },
@@ -55,7 +53,6 @@ const serviceCategories = [
     title: 'Software Development & Technology',
     shortDesc: 'Purpose-built web, mobile, and MarTech systems engineered by business-minded developers.',
     icon: Code2,
-    accent: 'navy',
     items: [
       { name: 'Custom Software & Web Application Development', desc: 'Scalable cloud web applications, internal tools, and client portals (React, Node, Python).' },
       { name: 'Mobile App Development (iOS, Android, Cross-Platform)', desc: 'Native Swift/Kotlin and React Native/Flutter apps with built-in marketing analytics.' },
@@ -77,137 +74,124 @@ export default function ServicesGrid({ onOpenDiagnostic }) {
     : serviceCategories.filter((c) => c.id === activeTab)
 
   return (
-    <section id="services" className="py-20 lg:py-28 bg-ivory" ref={ref}>
+    <section id="services" className="py-20 lg:py-28 bg-white" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <motion.span
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-block text-xs font-bold tracking-[0.2em] text-mustard uppercase mb-3"
+            className="inline-flex items-center gap-2 bg-[#F1F2E6] border border-[#B7BBD9]/50 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-[#B38B00] uppercase mb-3 shadow-xs"
           >
-            Capabilities &amp; Practice Areas
-          </motion.span>
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Capabilities &amp; Practice Areas</span>
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-navy leading-tight mb-5"
+            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-[#0F172A] leading-tight mb-5"
           >
             Full-Spectrum Consulting, Marketing &amp; Technology for{' '}
-            <span className="text-mustard">Modern Business Growth</span>
+            <span className="text-[#B38B00]">Modern Business Growth</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-body/80 leading-relaxed"
+            className="text-base sm:text-lg text-[#334155] leading-relaxed"
           >
-            We eliminate vendor fragmentation. Every discipline—from C-suite growth advisory to full-stack software development—operates under unified strategic command.
+            Every service we deliver is an integrated component of your overall growth strategy—designed by consultants, executed by marketers, and powered by custom technology.
           </motion.p>
         </div>
 
-        {/* Category Filter Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-12"
-        >
+        {/* Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-14">
           <button
             onClick={() => setActiveTab('all')}
             className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
               activeTab === 'all'
-                ? 'bg-navy text-white shadow-md'
-                : 'bg-white text-navy/70 border border-border hover:border-mustard'
+                ? 'bg-[#0F172A] text-white shadow-lg shadow-[#0F172A]/20'
+                : 'bg-[#F1F2E6] text-[#0F172A] hover:bg-[#B7BBD9]/30 border border-[#B7BBD9]/30'
             }`}
           >
-            All 4 Core Disciplines
+            All Practice Areas
           </button>
-          {serviceCategories.map((cat) => (
+          {serviceCategories.map((c) => (
             <button
-              key={cat.id}
-              onClick={() => setActiveTab(cat.id)}
+              key={c.id}
+              onClick={() => setActiveTab(c.id)}
               className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                activeTab === cat.id
-                  ? 'bg-navy text-white shadow-md'
-                  : 'bg-white text-navy/70 border border-border hover:border-mustard'
+                activeTab === c.id
+                  ? 'bg-[#0F172A] text-white shadow-lg shadow-[#0F172A]/20'
+                  : 'bg-[#F1F2E6] text-[#0F172A] hover:bg-[#B7BBD9]/30 border border-[#B7BBD9]/30'
               }`}
             >
-              {cat.title}
+              {c.title}
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Service Pillars Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {displayedCategories.map((category, catIdx) => {
+        {/* Categories Grid */}
+        <div className="space-y-14">
+          {displayedCategories.map((category) => {
             const Icon = category.icon
-            const isMustard = category.accent === 'mustard'
             return (
-              <motion.div
+              <div
                 key={category.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.1 + catIdx * 0.1, duration: 0.5 }}
-                className="bg-white rounded-3xl p-8 sm:p-9 border border-border/70 hover:border-mustard/40 shadow-lg shadow-navy/3 hover:shadow-2xl hover:shadow-navy/6 transition-all duration-300 flex flex-col justify-between"
+                className="bg-[#F1F2E6] rounded-3xl p-6 sm:p-10 border border-[#B7BBD9]/40 shadow-xl shadow-[#0F172A]/5"
               >
-                <div>
-                  {/* Category Header */}
-                  <div className="flex items-start justify-between gap-4 mb-6">
+                {/* Category Header */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-8 border-b border-[#B7BBD9]/30 gap-4">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-12 h-12 rounded-2xl bg-[#0F172A] text-[#B38B00] flex items-center justify-center shadow-md shrink-0">
+                      <Icon className="w-6 h-6" />
+                    </div>
                     <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <div
-                          className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${
-                            isMustard ? 'bg-mustard/15 text-mustard' : 'bg-navy/10 text-navy'
-                          }`}
-                        >
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <h3 className="text-xl sm:text-2xl font-extrabold text-navy">
-                          {category.title}
-                        </h3>
-                      </div>
-                      <p className="text-xs sm:text-sm text-body/75 leading-relaxed pl-14">
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F172A]">
+                        {category.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#334155] font-normal">
                         {category.shortDesc}
                       </p>
                     </div>
                   </div>
-
-                  {/* Sub-services List */}
-                  <div className="divide-y divide-border/50 border-t border-border/60 mt-4">
-                    {category.items.map((item) => (
-                      <div key={item.name} className="py-3.5 group cursor-default">
-                        <div className="flex items-start gap-2.5">
-                          <CheckCircle2 className="w-4 h-4 text-mustard shrink-0 mt-0.5" />
-                          <div>
-                            <h4 className="text-xs sm:text-sm font-bold text-navy group-hover:text-mustard transition-colors">
-                              {item.name}
-                            </h4>
-                            <p className="text-[11px] sm:text-xs text-body/70 mt-0.5 leading-relaxed">
-                              {item.desc}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Card Bottom CTA */}
-                <div className="pt-6 mt-4 border-t border-border/70 flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-navy/60 uppercase tracking-wider">
-                    {category.items.length} Specialized Capabilities
-                  </span>
                   <button
                     onClick={onOpenDiagnostic}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-navy hover:text-mustard transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0F172A] hover:text-[#B38B00] transition-colors cursor-pointer self-start md:self-auto"
                   >
-                    <span>Inquire About Practice</span>
+                    <span>Request Practice Briefing</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
-              </motion.div>
+
+                {/* Service Cards Grid with 3D Tilt */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {category.items.map((item) => (
+                    <Interactive3DCard
+                      key={item.name}
+                      glowColor="rgba(179, 139, 0, 0.12)"
+                      className="bg-white rounded-2xl p-5 border border-[#B7BBD9]/40 hover:border-[#B38B00] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
+                    >
+                      <div>
+                        <div className="flex items-center gap-2 mb-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-[#B38B00] shrink-0" />
+                          <h4 className="text-xs font-extrabold text-[#0F172A] group-hover:text-[#B38B00] transition-colors leading-snug">
+                            {item.name}
+                          </h4>
+                        </div>
+                        <p className="text-[11px] text-[#334155] leading-relaxed font-normal">
+                          {item.desc}
+                        </p>
+                      </div>
+                      <div className="pt-3 mt-3 border-t border-[#B7BBD9]/20 flex items-center justify-between text-[10px] text-[#B38B00] font-bold">
+                        <span>Integrated Delivery</span>
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Interactive3DCard>
+                  ))}
+                </div>
+              </div>
             )
           })}
         </div>

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, ArrowRight, X, CheckCircle, Sparkles, Building2, TrendingUp, Layers } from 'lucide-react'
+import { ArrowUpRight, ArrowRight, X, CheckCircle, Sparkles } from 'lucide-react'
+import Interactive3DCard from './3d/Interactive3DCard'
 
 const caseStudiesData = [
   {
@@ -91,188 +92,213 @@ export default function CaseStudies({ onOpenDiagnostic }) {
   const [activeModalStudy, setActiveModalStudy] = useState(null)
 
   return (
-    <section id="case-studies" className="py-20 lg:py-28 bg-white relative" ref={ref}>
+    <section id="case-studies" className="py-20 lg:py-28 bg-[#F1F2E6] relative" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <div>
-            <motion.span
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              className="inline-block text-xs font-bold tracking-[0.2em] text-mustard uppercase mb-3"
+              className="inline-flex items-center gap-2 bg-white border border-[#B7BBD9]/50 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-[#B38B00] uppercase mb-3 shadow-xs"
             >
-              Proven Business Impact
-            </motion.span>
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Proven Outcomes Across Industries</span>
+            </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-navy leading-tight"
+              className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-[#0F172A] leading-tight"
             >
-              Strategic Case Studies &amp;{' '}
-              <span className="text-mustard">Transformation Results</span>
+              Strategic Transformation in{' '}
+              <span className="text-[#B38B00]">Action</span>
             </motion.h2>
           </div>
-
-          <motion.button
-            onClick={onOpenDiagnostic}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-navy hover:text-mustard transition-colors cursor-pointer shrink-0"
+            className="text-sm sm:text-base text-[#334155] max-w-lg leading-relaxed font-normal"
           >
-            <span>Request Full Portfolio Deck</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </motion.button>
+            How our integrated model solves root-cause growth constraints and delivers measurable business outcomes across sectors.
+          </motion.p>
         </div>
 
-        {/* 4 Case Studies Grid */}
+        {/* 4 Case Study Cards in 3D */}
         <div className="grid md:grid-cols-2 gap-8">
           {caseStudiesData.map((study, i) => (
             <motion.div
               key={study.id}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.15 + i * 0.1, duration: 0.5 }}
-              onClick={() => setActiveModalStudy(study)}
-              className="group bg-ivory/40 hover:bg-white rounded-3xl p-8 sm:p-9 border border-border/80 hover:border-mustard/40 shadow-sm hover:shadow-2xl hover:shadow-navy/5 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1"
+              transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
+              className="h-full"
             >
-              <div>
-                {/* Top Badge & Client */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="bg-navy/5 text-navy font-bold text-[11px] uppercase tracking-wider px-3 py-1 rounded-full border border-navy/10">
-                    {study.tag}
-                  </span>
-                  <span className="text-xs font-bold text-mustard">
-                    {study.headlineOutcome}
-                  </span>
+              <Interactive3DCard
+                glowColor="rgba(183, 187, 217, 0.2)"
+                className="h-full bg-white rounded-3xl p-8 border border-[#B7BBD9]/40 hover:border-[#B38B00] shadow-xl shadow-[#0F172A]/5 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-extrabold tracking-wider uppercase bg-[#0F172A] text-white">
+                      {study.tag}
+                    </span>
+                    <span className="text-xs text-[#334155] font-semibold">{study.clientType}</span>
+                  </div>
+
+                  <h3 className="text-xl font-extrabold text-[#0F172A] leading-snug mb-3 group-hover:text-[#B38B00] transition-colors">
+                    {study.title}
+                  </h3>
+
+                  <div className="bg-[#F1F2E6] rounded-2xl p-4 mb-5 border border-[#B7BBD9]/30">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#0F172A]/70 block mb-1">
+                      Validated Strategic Outcome
+                    </span>
+                    <span className="text-lg font-black text-[#B38B00] block">
+                      {study.headlineOutcome}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-[#334155] leading-relaxed mb-6 font-normal">
+                    {study.challenge}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    {study.results.map((res) => (
+                      <div key={res.label} className="bg-white rounded-xl p-3 border border-[#B7BBD9]/30">
+                        <span className="text-base font-black text-[#0F172A] block">{res.value}</span>
+                        <span className="text-[10px] text-[#334155] font-semibold block">{res.label}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-extrabold text-navy leading-snug mb-3 group-hover:text-mustard transition-colors">
-                  {study.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-body/75 line-clamp-3 leading-relaxed mb-6">
-                  {study.challenge}
-                </p>
-
-                {/* Key Metrics Ribbon */}
-                <div className="grid grid-cols-2 gap-3 bg-white p-4 rounded-2xl border border-border/60 mb-6">
-                  {study.results.slice(0, 2).map((r) => (
-                    <div key={r.label}>
-                      <span className="text-xl sm:text-2xl font-black text-mustard block">{r.value}</span>
-                      <span className="text-[10px] font-bold text-navy/70 uppercase tracking-wider block">{r.label}</span>
-                    </div>
-                  ))}
+                <div className="pt-4 border-t border-[#B7BBD9]/30 flex items-center justify-between">
+                  <button
+                    onClick={() => setActiveModalStudy(study)}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F172A] group-hover:text-[#B38B00] transition-colors cursor-pointer"
+                  >
+                    <span>Read Full Strategic Case Study</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </button>
+                  <button
+                    onClick={onOpenDiagnostic}
+                    className="text-[11px] font-bold text-[#B38B00] hover:underline cursor-pointer"
+                  >
+                    Solve Similar Bottleneck
+                  </button>
                 </div>
-              </div>
-
-              <div className="pt-4 border-t border-border/60 flex items-center justify-between">
-                <span className="text-xs font-bold text-navy group-hover:text-mustard transition-colors flex items-center gap-1">
-                  View Full Transformation Architecture
-                </span>
-                <div className="w-8 h-8 rounded-full bg-ivory group-hover:bg-mustard group-hover:text-white flex items-center justify-center transition-colors">
-                  <ArrowUpRight className="w-4 h-4 text-navy group-hover:text-white" />
-                </div>
-              </div>
+              </Interactive3DCard>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Case Study Full Architecture Modal */}
+      {/* Case Study Deep-Dive Modal */}
       <AnimatePresence>
         {activeModalStudy && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setActiveModalStudy(null)}
-              className="fixed inset-0 bg-navy/75 backdrop-blur-md"
+              className="fixed inset-0 bg-[#0F172A]/80 backdrop-blur-md"
             />
 
+            {/* Modal Dialog */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: 'spring', duration: 0.5, bounce: 0.15 }}
-              className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-border overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col"
+              className="relative w-full max-w-2xl bg-[#F1F2E6] rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#B7BBD9]/50 z-10 max-h-[90vh] overflow-y-auto"
             >
-              <div className="h-2 bg-gradient-to-r from-navy via-mustard to-navy shrink-0" />
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#B7BBD9]/30">
+                <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-[#0F172A] text-white">
+                  {activeModalStudy.tag}
+                </span>
+                <button
+                  onClick={() => setActiveModalStudy(null)}
+                  className="p-2 rounded-xl text-[#0F172A] hover:bg-white transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-              <button
-                onClick={() => setActiveModalStudy(null)}
-                className="absolute top-5 right-5 p-2 rounded-full text-body/50 hover:text-navy hover:bg-ivory transition-colors z-20 cursor-pointer"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <h3 className="text-2xl font-extrabold text-[#0F172A] mb-2">
+                {activeModalStudy.title}
+              </h3>
+              <p className="text-xs font-semibold text-[#334155] mb-5">
+                Client Profile: {activeModalStudy.clientType}
+              </p>
 
-              <div className="p-6 sm:p-9 overflow-y-auto space-y-6">
+              <div className="bg-white rounded-2xl p-4 mb-6 border border-[#B7BBD9]/40">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0F172A]/70 block mb-1">
+                  Validated Headline Outcome
+                </span>
+                <span className="text-xl font-black text-[#B38B00]">
+                  {activeModalStudy.headlineOutcome}
+                </span>
+              </div>
+
+              <div className="space-y-5 text-xs text-[#334155] leading-relaxed">
                 <div>
-                  <div className="inline-flex items-center gap-2 bg-mustard/15 px-3 py-1 rounded-full text-xs font-bold text-mustard uppercase mb-2">
-                    <Sparkles className="w-3.5 h-3.5" /> Full Transformation Blueprint
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-navy leading-snug">
-                    {activeModalStudy.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm font-semibold text-body/65 mt-1">
-                    Client Category: {activeModalStudy.clientType}
-                  </p>
-                </div>
-
-                {/* 4 Results Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-ivory/80 rounded-2xl p-4 border border-border/70">
-                  {activeModalStudy.results.map((r) => (
-                    <div key={r.label} className="text-center">
-                      <p className="text-xl sm:text-2xl font-black text-mustard">{r.value}</p>
-                      <p className="text-[10px] font-bold text-navy/70 uppercase tracking-wider mt-0.5">{r.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Strategic Challenge */}
-                <div className="bg-white p-5 rounded-2xl border border-border/80 shadow-sm">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-navy/70 mb-2">
-                    Strategic Challenge &amp; Constraint
+                  <h4 className="font-extrabold text-sm text-[#0F172A] mb-2 uppercase tracking-wider">
+                    The Strategic Constraint &amp; Challenge
                   </h4>
-                  <p className="text-xs sm:text-sm text-body/80 leading-relaxed">
+                  <p className="bg-white/70 p-4 rounded-xl border border-[#B7BBD9]/30">
                     {activeModalStudy.challenge}
                   </p>
                 </div>
 
-                {/* Strategic Solution */}
-                <div className="bg-white p-5 rounded-2xl border border-border/80 shadow-sm">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-mustard mb-3">
-                    Integrated Strategic Solution
+                <div>
+                  <h4 className="font-extrabold text-sm text-[#0F172A] mb-2 uppercase tracking-wider">
+                    Our Integrated Strategic Solution
                   </h4>
-                  <ul className="space-y-2.5">
-                    {activeModalStudy.solution.map((sol) => (
-                      <li key={sol} className="flex items-start gap-2.5 text-xs sm:text-sm text-body/80 leading-relaxed">
-                        <CheckCircle className="w-4 h-4 text-mustard shrink-0 mt-0.5" />
-                        <span>{sol}</span>
+                  <ul className="space-y-2 bg-white/70 p-4 rounded-xl border border-[#B7BBD9]/30">
+                    {activeModalStudy.solution.map((step, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-[#B38B00] shrink-0 mt-0.5" />
+                        <span>{step}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Bottom CTA */}
-                <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <p className="text-xs text-body/60 text-center sm:text-left">
-                    Facing a similar operational or marketing growth bottleneck?
-                  </p>
-                  <button
-                    onClick={() => {
-                      setActiveModalStudy(null)
-                      onOpenDiagnostic()
-                    }}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-navy hover:bg-mustard text-white px-7 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
-                  >
-                    Discuss Similar Engagement
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+                <div>
+                  <h4 className="font-extrabold text-sm text-[#0F172A] mb-2 uppercase tracking-wider">
+                    Measurable Strategic Results
+                  </h4>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {activeModalStudy.results.map((r) => (
+                      <div key={r.label} className="bg-white p-3 rounded-xl border border-[#B7BBD9]/40 text-center">
+                        <span className="text-base font-black text-[#0F172A] block">{r.value}</span>
+                        <span className="text-[10px] text-[#334155] block">{r.label}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-[#B7BBD9]/30 flex flex-wrap items-center justify-between gap-4">
+                <button
+                  onClick={() => {
+                    setActiveModalStudy(null)
+                    onOpenDiagnostic()
+                  }}
+                  className="inline-flex items-center gap-2 bg-[#0F172A] hover:bg-[#B38B00] text-white px-6 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                >
+                  <span>Book Strategic Diagnostic</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setActiveModalStudy(null)}
+                  className="text-xs font-bold text-[#0F172A] hover:underline cursor-pointer"
+                >
+                  Close Case Study
+                </button>
               </div>
             </motion.div>
           </div>

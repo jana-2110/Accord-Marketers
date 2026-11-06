@@ -1,34 +1,33 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Search, Compass, Rocket, TrendingUp, CheckCircle, FileText, ArrowRight } from 'lucide-react'
+import { Search, Compass, Rocket, TrendingUp, CheckCircle, FileText, ArrowRight, Sparkles } from 'lucide-react'
+import Interactive3DCard from './3d/Interactive3DCard'
 
 const phases = [
   {
     phase: 'PHASE 01',
     title: 'Strategic Diagnosis & Business Assessment',
-    subtitle: 'Understanding your business before recommending solutions',
+    subtitle: 'Understanding Your Business Before Recommending Solutions',
     icon: Search,
-    accent: 'navy',
     activities: [
-      'Comprehensive Business Diagnostic: performance, tech infrastructure, operational maturity',
-      'Stakeholder Strategy Sessions with executive leadership to align on constraints & KPIs',
-      'Data & Technology Infrastructure Assessment: tracking gaps, tech debt & integration needs',
-      'Competitive & Market Intelligence: TAM/SAM/SOM whitespace identification',
-      'Capability Maturity Scoring against industry benchmarks',
+      'Comprehensive Business Diagnostic: audit of current marketing performance, tech infrastructure, and operational maturity',
+      'Stakeholder Strategy Sessions with executive leadership to align on strategic goals and constraints',
+      'Data & Technology Infrastructure Assessment: tracking gaps, tech debt, and governance requirements',
+      'Competitive & Market Intelligence: TAM/SAM/SOM whitespace identification and benchmarking',
+      'Capability Maturity Scoring against industry benchmarks to identify investment priorities',
     ],
-    deliverable: 'Strategic Growth Roadmap — Prioritized, phased plan with budget allocation, ROI projections, and strategic rationale.',
+    deliverable: 'Strategic Growth Roadmap — Prioritized, phased plan with clear milestones, budget allocation, ROI projections, and strategic rationale.',
   },
   {
     phase: 'PHASE 02',
     title: 'Strategy Architecture & Integrated Planning',
-    subtitle: 'Designing coherent systems before execution',
+    subtitle: 'Designing Coherent Systems Before Execution',
     icon: Compass,
-    accent: 'mustard',
     activities: [
-      'Strategic Architecture Design connecting business objectives to marketing & technology',
-      'Marketing Campaign Architecture: channel mix, editorial calendar & automation funnels',
-      'Technical Architecture Planning: system diagrams, API specs & database schemas',
-      'Integration Mapping: ensuring MarTech, CRM, and custom software share clean data',
+      'Strategic Architecture Design connecting business objectives, marketing programs, and technology',
+      'Marketing Campaign Architecture: channel mix, editorial calendar, and automation funnels',
+      'Technical Architecture Planning: system diagrams, API specifications, and database schemas',
+      'Integration Mapping: ensuring marketing tools, CRM, and custom software share clean data',
       'Transparent Gantt timelines, resource allocation, and risk mitigation protocols',
     ],
     deliverable: 'Integrated Project Blueprint — Strategic specifications, campaign wireframes, and technical architecture.',
@@ -36,32 +35,30 @@ const phases = [
   {
     phase: 'PHASE 03',
     title: 'Build, Activate & Strategic Execution',
-    subtitle: 'Parallel execution of consulting, marketing, and development workstreams',
+    subtitle: 'Parallel Execution of Consulting, Marketing, and Development Workstreams',
     icon: Rocket,
-    accent: 'navy',
     activities: [
-      'Strategic Consulting Track: ongoing advisory support & executive governance',
-      'Development Track: agile 2-week sprints with continuous integration & demos',
-      'Marketing Track: multi-channel asset production, ad account launch & automation configuration',
-      'Integration Track: API connections, CRM synchronization & server-side tracking validation',
-      'Cross-functional QA ensuring marketing, software, and business goals align seamlessly',
+      'Strategic Consulting Track: ongoing advisory support, competitive monitoring, and executive reporting',
+      'Development Track: agile 2-week sprints with continuous integration and incremental feature delivery',
+      'Marketing Track: multi-channel asset production, content creation, ad account setup, and automation workflows',
+      'Integration Track: API connections, CRM synchronization, and server-side tracking validation',
+      'Quality Assurance & Strategic Alignment Review ensuring systems operate as a unified growth engine',
     ],
-    deliverable: 'Live Campaigns, Deployed Software & Strategic Performance Dashboards.',
+    deliverable: 'Live Campaigns, Deployed Software, Validated Data Flows & Strategic Performance Dashboards.',
   },
   {
     phase: 'PHASE 04',
     title: 'Optimize, Scale & Strategic Evolution',
-    subtitle: 'Continuous improvement based on performance data and market intelligence',
+    subtitle: 'Continuous Improvement Based on Performance Data and Market Intelligence',
     icon: TrendingUp,
-    accent: 'mustard',
     activities: [
-      'Weekly Strategic Performance Reviews against established revenue & CAC KPIs',
-      'Continuous A/B testing across creative, software UX, and conversion funnels',
-      'Technical Optimization: infrastructure scaling, security audits & code refactoring',
-      'Quarterly Strategic Reviews (QBRs) adjusting roadmap priorities as markets shift',
-      'Capability Building & Knowledge Transfer to empower internal teams',
+      'Weekly Strategic Performance Reviews against established revenue, CAC, and operational KPIs',
+      'Continuous A/B testing across creative, software UX, conversion funnels, and messaging',
+      'Technical Optimization: infrastructure scaling, security audits, code refactoring, and speed tuning',
+      'Quarterly Strategic Reviews (QBRs) adjusting roadmap priorities as market dynamics evolve',
+      'Capability Building & Knowledge Transfer to empower internal client teams',
     ],
-    deliverable: 'Compounding Performance Improvements & Long-Term Competitive Advantage.',
+    deliverable: 'Compounding Performance Improvements, Expanded Strategic Scope & Organizational Capability.',
   },
 ]
 
@@ -70,102 +67,108 @@ export default function Methodology({ onOpenDiagnostic }) {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="methodology" className="py-20 lg:py-28 bg-ivory" ref={ref}>
+    <section id="methodology" className="py-20 lg:py-28 bg-white relative" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <motion.span
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-block text-xs font-bold tracking-[0.2em] text-mustard uppercase mb-3"
+            className="inline-flex items-center gap-2 bg-[#F1F2E6] border border-[#B7BBD9]/50 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-[#B38B00] uppercase mb-3 shadow-xs"
           >
-            Engagement Framework
-          </motion.span>
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>The Diagnostic-First Process</span>
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-navy leading-tight mb-4"
+            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-[#0F172A] leading-tight mb-5"
           >
-            A Proven Strategic Methodology for{' '}
-            <span className="text-mustard">Integrated Growth</span>
+            How We Turn Strategy Into{' '}
+            <span className="text-[#B38B00]">Execution</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-body/80 leading-relaxed"
+            className="text-base sm:text-lg text-[#334155] leading-relaxed"
           >
-            We don't believe in black-box agency work or theoretical consulting. Our process is transparent, collaborative, and engineered to reduce strategic risk while accelerating time-to-value—from diagnosis through optimization.
+            Our battle-tested four-phase methodology ensures every campaign and software feature connects directly to your boardroom growth objectives.
           </motion.p>
         </div>
 
-        {/* 4 Phases Timeline */}
+        {/* 4 Phases Timeline Grid with 3D Tilt Cards */}
         <div className="grid md:grid-cols-2 gap-8">
-          {phases.map((p, i) => {
-            const Icon = p.icon
-            const isMustard = p.accent === 'mustard'
+          {phases.map((item, i) => {
+            const Icon = item.icon
             return (
               <motion.div
-                key={p.phase}
+                key={item.phase}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.15 + i * 0.1, duration: 0.5 }}
-                className="bg-white rounded-3xl p-8 sm:p-9 border border-border/80 hover:border-mustard/40 shadow-lg shadow-navy/3 hover:shadow-2xl hover:shadow-navy/6 transition-all duration-300 flex flex-col justify-between"
+                className="h-full"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="text-xs font-black tracking-widest uppercase text-mustard bg-mustard/15 px-3 py-1 rounded-full">
-                      {p.phase}
-                    </span>
-                    <div
-                      className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
-                        isMustard ? 'bg-mustard/15 text-mustard' : 'bg-navy/10 text-navy'
-                      }`}
-                    >
-                      <Icon className="w-5 h-5" />
+                <Interactive3DCard
+                  glowColor="rgba(179, 139, 0, 0.15)"
+                  className="h-full bg-[#F1F2E6] rounded-3xl p-8 border border-[#B7BBD9]/40 hover:border-[#B38B00] shadow-xl shadow-[#0F172A]/5 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div>
+                    {/* Phase Top Row */}
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="text-xs font-black tracking-widest text-[#B38B00] font-mono px-3 py-1 rounded-full bg-white border border-[#B7BBD9]/30">
+                        {item.phase}
+                      </span>
+                      <div className="w-12 h-12 rounded-2xl bg-[#0F172A] text-[#B38B00] group-hover:bg-[#B38B00] group-hover:text-white transition-colors flex items-center justify-center shadow-sm">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl font-extrabold text-[#0F172A] mb-1 group-hover:text-[#B38B00] transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs font-semibold text-[#0F172A]/70 mb-5">
+                      {item.subtitle}
+                    </p>
+
+                    {/* Key Activities List */}
+                    <ul className="space-y-2.5 mb-6">
+                      {item.activities.map((act, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-xs text-[#334155] leading-relaxed">
+                          <CheckCircle className="w-3.5 h-3.5 text-[#B38B00] shrink-0 mt-0.5" />
+                          <span>{act}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Primary Deliverable Box */}
+                  <div className="pt-5 border-t border-[#B7BBD9]/30">
+                    <div className="bg-white rounded-2xl p-4 border-l-4 border-l-[#B38B00] border border-[#B7BBD9]/30">
+                      <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#0F172A] mb-1">
+                        <FileText className="w-3.5 h-3.5 text-[#B38B00]" />
+                        <span>Core Strategic Deliverable:</span>
+                      </div>
+                      <p className="text-xs text-[#334155] font-semibold leading-relaxed">
+                        {item.deliverable}
+                      </p>
                     </div>
                   </div>
-
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-navy leading-snug mb-1">
-                    {p.title}
-                  </h3>
-                  <p className="text-xs text-body/60 font-semibold mb-6">
-                    {p.subtitle}
-                  </p>
-
-                  <div className="space-y-2.5 mb-6">
-                    {p.activities.map((act) => (
-                      <div key={act} className="flex items-start gap-2.5 text-xs text-body/80 leading-relaxed">
-                        <CheckCircle className="w-4 h-4 text-mustard shrink-0 mt-0.5" />
-                        <span>{act}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-5 border-t border-border/60 bg-ivory/50 -mx-8 sm:-mx-9 -mb-8 sm:-mb-9 p-6 rounded-b-3xl">
-                  <div className="flex items-start gap-2 text-xs text-navy font-semibold">
-                    <FileText className="w-4 h-4 text-mustard shrink-0 mt-0.5" />
-                    <span>
-                      <strong className="text-navy uppercase text-[10px] tracking-wider block">Phase Output:</strong>
-                      {p.deliverable}
-                    </span>
-                  </div>
-                </div>
+                </Interactive3DCard>
               </motion.div>
             )
           })}
         </div>
 
-        {/* Diagnostic Timeline CTA */}
+        {/* Methodology Bottom CTA */}
         <div className="mt-14 text-center">
           <button
             onClick={onOpenDiagnostic}
-            className="inline-flex items-center gap-2 bg-navy hover:bg-mustard text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-mustard/20 hover:-translate-y-0.5 cursor-pointer"
+            className="group inline-flex items-center gap-2.5 bg-[#0F172A] hover:bg-[#B38B00] text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-[#B38B00]/25 hover:-translate-y-0.5 cursor-pointer"
           >
-            <span>Initiate Phase 1: Strategic Diagnostic</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Initiate Phase 01: Strategic Diagnostic</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>
